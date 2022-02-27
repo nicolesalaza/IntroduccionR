@@ -1,0 +1,43 @@
+---
+title: "Introducción R"
+author: "Mildreth Salazar"
+date: "26/2/2022"
+output: html_document
+---
+## Crea un identificador de nombre "ciudad" y asigne como valor el nombre de alguna ciudad
+
+```{r parte 1}
+ciudad <- "Quito"
+print(ciudad)
+```
+
+## Crea un identificador de nombre "pais_andes" y asigne como valor los países por donde cruza la cordillera de los Andes
+
+```{r parte 2}
+pais_andes <- c("Argentina", "Bolivia", "Chile", "Colombia", "Ecuador", "Perú", "Venezuela") 
+print(pais_andes)
+```
+
+## Crea unn dataframe con 12 eventos y 5 variables, cada columna debe tener diferentes tipos de datos.
+
+```{r parte 3}
+covid19_muertes <- data.frame(identador = seq(1:12), 
+                              paises = c("Estados Unidos", "Brasil", "Mexico", "Peru", "Colombia", "Argentina", "Chile", "Ecuador", "Bolivia", "Guatemala", "Venezuela", "Guyana"),
+                              polacion = c(9.69, 6.47, 3.17, 2.10, 1.38, 1.25, 0.41, 0.35, 0.21, 0.16, 0.05, 0.01), #miles
+                              grupos_edad = sample(c("Adultos", "Jovenes")),
+                              seguro_salud = as.factor(c(rep(0, ), 1, 1)))
+print(covid19_muertes)
+```
+
+## Carge el DNase, extraiga los datos que cumplan con las condiciones de:
+### 1. "conc" entre 0.1 y 0.2
+### 2. "Run" diferente a 2, "conc" mayor a 0.2 y "density" menor o igual a 1.0
+
+```{r parte 4}
+database <- data(DNase)
+class(DNase)
+first_filter <- subset(x = DNase, subset = conc < 0.2 & conc > 0.1)
+print(first_filter)
+second_filter <- subset(x = DNase, subset = Run != 2 & conc > 0.2 & density <= 1.0)
+print(second_filter)
+```
